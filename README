@@ -3,7 +3,7 @@ CYBV311 Introduction to Security Programming II - Assembly Language
 
 This git repository is a learning resource for the CYBV311 Introduction to Security Programming II course.  
 
-The assembly contained in this project are based on the NASM assembler.  The assembler is available on multiple 
+The assembly files contained in this project are written for the NASM assembler.  The assembler is available on multiple 
 platforms and can be downloaded here:
 
   https://www.nasm.us/pub/nasm/releasebuilds/?C=M;O=D  
