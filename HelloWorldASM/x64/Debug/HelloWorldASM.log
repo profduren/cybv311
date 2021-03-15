@@ -1,0 +1,4 @@
+﻿  hello.asm
+C:\Dev\CYBV311\HelloWorldASM\hello.asm(20): error : instruction not supported in 64-bit mode
+C:\Dev\CYBV311\HelloWorldASM\hello.asm(23): error : instruction not supported in 64-bit mode
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\BuildCustomizations\nasm.targets(50,5): error MSB3721: The command ""C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\"nasm.exe -Xvc -f win64 -o "x64\Debug\hello.obj"  "C:\Dev\CYBV311\HelloWorldASM\hello.asm"" exited with code 1.
