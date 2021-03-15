@@ -1,2 +1,32 @@
 
 CYBV311 Introduction to Security Programming II - Assembly Language
+
+This git repository is a learning resource for the CYBV311 Introduction to Security Programming II course.  
+
+The assembly contained in this project are based on the NASM assembler.  The assembler is available on multiple 
+platforms and can be downloaded here:
+
+  https://www.nasm.us/pub/nasm/releasebuilds/?C=M;O=D  
+
+The project files uploaded to this repository were created using Visual Studio 2019 Community Edition.  In order to
+use the NASM assembler with the Visual Studio projects you will need to setup a custom build configuration to 
+allow for the ASM files to be compiled with NASM and linked with the Visual Studio linker.  One good way to accomplish
+this is to download and use VSNASM, which can be found here:
+
+  https://github.com/ShiftMediaProject/VSNASM
+  
+There are instructions in the VSNASM README for installing using a batch file or installing manually.  
+
+Be sure to add NASM.exe to the "Build Customization Search Path".  This path is used to find the executable programs
+used when a custom build is invoked.  The setting in Visual Studio 2019 can be found under:
+  
+  Tools->Options then Projects and Solutions->VC++ Project Settings
+  
+My path looks like this:
+
+  "c:\program files\NASM"
+
+This is the default installation location for NASM on Windows.
+
+
+
