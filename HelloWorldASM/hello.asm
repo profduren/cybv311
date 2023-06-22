@@ -10,7 +10,7 @@
 
 section .data
 msg:
-    db  'Welcome to CYBV311!!', 10, 0
+    db  'Welcome to CYBV311!!', 15, 0
 
 section .text
 _main:
