@@ -8,7 +8,11 @@
     extern  _printf
     extern  _ExitProcess@4
 
-    section .text
+section .data
+msg:
+    db  'Welcome to CYBV311!!', 10, 0
+
+section .text
 _main:
     push    msg      ; push the msg on the stack
     call    _printf  ; call the printf function
@@ -17,5 +21,3 @@ _main:
     push    0
     call    _ExitProcess@4
 
-msg:
-    db  'Welcome to CYBV311!!', 10, 0
