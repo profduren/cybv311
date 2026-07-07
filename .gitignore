@@ -1,3 +1,13 @@
+# Visual Studio build output and per-user files
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+*.tlog
+*.log
+*.vcxproj.user
+.vs/
+
 # Prerequisites
 *.d
 

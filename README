@@ -1,32 +1,86 @@
-
 CYBV311 Introduction to Security Programming II - Assembly Language
+===================================================================
 
-This git repository is a learning resource for the CYBV311 Introduction to Security Programming II course.  
+This git repository is a learning resource for the CYBV311 Introduction to
+Security Programming II course. It contains a small "Hello World" program
+written in x86 assembly (see HelloWorldASM/hello.asm) that you build and run
+from Visual Studio.
 
-The assembly files contained in this project are written for the NASM assembler.  The assembler is available on multiple 
-platforms and can be downloaded here:
+The assembly files in this project are written for the NASM assembler and are
+built as 32-bit (x86 / Win32) programs. NASM assembles the .asm file into an
+object file, and the Visual Studio (MSVC) linker links it into an executable.
 
-  https://www.nasm.us/pub/nasm/releasebuilds/?C=M;O=D  
 
-The project files uploaded to this repository were created using Visual Studio 2019 Community Edition.  In order to
-use the NASM assembler with the Visual Studio projects you will need to setup a custom build configuration to 
-allow for the ASM files to be compiled with NASM and linked with the Visual Studio linker.  One good way to accomplish
-this is to download and use VSNASM, which can be found here:
+Requirements
+------------
+
+  * Visual Studio 2026 (the Community edition is free) with the
+    "Desktop development with C++" workload installed.
+  * The NASM assembler for Windows.
+  * VSNASM, which teaches Visual Studio how to build .asm files with NASM.
+
+
+Step 1 - Install NASM
+---------------------
+
+Download the latest Windows build of NASM here:
+
+  https://www.nasm.us/pub/nasm/releasebuilds/?C=M;O=D
+
+Run the installer (or unzip the archive) and install to the default location:
+
+  C:\Program Files\NASM
+
+Confirm that nasm.exe exists in that folder before continuing.
+
+
+Step 2 - Install VSNASM (NASM build integration for Visual Studio)
+------------------------------------------------------------------
+
+Visual Studio does not know how to build .asm files on its own. VSNASM adds
+the "NASM" build customization (nasm.props / nasm.targets) that this project's
+.vcxproj already references.
 
   https://github.com/ShiftMediaProject/VSNASM
-  
-There are instructions in the VSNASM README for installing using a batch file or installing manually.  
 
-Be sure to add NASM.exe to the "Build Customization Search Path".  This path is used to find the executable programs
-used when a custom build is invoked.  The setting in Visual Studio 2019 can be found under:
-  
-  Tools->Options then Projects and Solutions->VC++ Project Settings
-  
-My path looks like this:
-
-  "c:\program files\NASM"
-
-This is the default installation location for NASM on Windows.
+Follow the instructions in the VSNASM README. The install.bat script is the
+easiest path - it copies the build customization files into your Visual Studio
+installation automatically. Manual installation instructions are also provided
+if you prefer to copy the files yourself.
 
 
+Step 3 - Point Visual Studio at nasm.exe
+----------------------------------------
 
+Add the NASM install folder to the "Build Customization Search Path" so Visual
+Studio can find nasm.exe when it runs the custom build step. In Visual Studio
+2026, this setting is under:
+
+  Tools -> Options -> Projects and Solutions -> VC++ Project Settings
+
+Add the NASM install folder to the search path, for example:
+
+  C:\Program Files\NASM
+
+(This is the default NASM installation location on Windows.)
+
+
+Step 4 - Open, build, and run
+-----------------------------
+
+  1. Open CYBV311.sln in Visual Studio 2026.
+  2. If Visual Studio prompts to retarget the project, accept it - this project
+     is configured for the v145 platform toolset that ships with VS 2026.
+  3. Set the Solution Platform to x86 (Win32). This program uses 32-bit name
+     decoration (e.g. _main, _ExitProcess@4), so it must be built for x86.
+  4. Build the solution (Build -> Build Solution, or Ctrl+Shift+B).
+  5. Run it (Debug -> Start Without Debugging, or Ctrl+F5) to see the greeting.
+
+
+Notes for older Visual Studio versions
+---------------------------------------
+
+These project files were originally created with Visual Studio 2019 (platform
+toolset v142) and have been updated for Visual Studio 2026 (platform toolset
+v145). If you open the solution in Visual Studio 2022, accept the retarget
+prompt and it will build with the v143 toolset.
