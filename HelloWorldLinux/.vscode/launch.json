@@ -1,0 +1,29 @@
+{
+    // Debug the Linux Hello World with gdb via the C/C++ extension.
+    // Requires (in WSL): gdb installed, and the VS Code "C/C++" extension
+    // (ms-vscode.cpptools) installed in the WSL remote.
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug hello (gdb)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/hello",
+            "args": [],
+            "stopAtEntry": true,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb",
+            "preLaunchTask": "debug-build",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+    ]
+}

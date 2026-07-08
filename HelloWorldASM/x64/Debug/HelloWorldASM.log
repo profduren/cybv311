@@ -1,6 +1,1 @@
-﻿  1>hello.asm
-  BuildUtils.c
-MSVCRTD.lib(exe_main.obj) : error LNK2001: unresolved external symbol main
-hello.obj : error LNK2001: unresolved external symbol _printf
-hello.obj : error LNK2001: unresolved external symbol _ExitProcess@4
-C:\Dev\Arizona\CYBV311\2026\cybv311\x64\Debug\HelloWorldASM.exe : fatal error LNK1120: 3 unresolved externals
+﻿C:\Dev\Arizona\CYBV311\2026\cybv311\HelloWorldASM\HelloWorldASM.vcxproj(63,5): error MSB4019: The imported project "C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\BuildCustomizations\nasm.props" was not found. Confirm that the expression in the Import declaration "$(VCTargetsPath)\BuildCustomizations\nasm.props", which evaluated to "C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\\BuildCustomizations\nasm.props", is correct, and that the file exists on disk.

@@ -1,3 +1,4 @@
 ﻿  1>hello.asm
   BuildUtils.c
-  HelloWorldASM.vcxproj -> C:\Dev\Arizona\CYBV311\2026\cybv311\Debug\HelloWorldASM.exe
+hello.obj : error LNK2001: unresolved external symbol exit
+C:\Dev\Arizona\CYBV311\2026\cybv311\Debug\HelloWorldASM.exe : fatal error LNK1120: 1 unresolved externals

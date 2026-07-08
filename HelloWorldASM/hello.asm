@@ -11,7 +11,7 @@
 
     global  _main            ; entry point the linker looks for (x86)
     extern  _printf          ; C runtime: int printf(const char *fmt, ...)
-    extern  _ExitProcess@4   ; Win32 API: void ExitProcess(UINT code)
+    extern  _exit   
 
 section .data
 msg:
@@ -23,7 +23,7 @@ _main:
     call    _printf          ; call printf to write the string to stdout
     add     esp, 4           ; clean up the one argument we pushed (cdecl)
 
-; ExitProcess(0) -- return exit code 0 to Windows
+; exit the program
     push    0
-    call    _ExitProcess@4
+    call    _exit
 

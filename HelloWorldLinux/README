@@ -1,0 +1,111 @@
+CYBV311 - Hello World (Linux / x86-64 NASM)
+===========================================
+
+This is the Linux counterpart to the Windows program in HelloWorldASM. It is a
+small "Hello World" written in x86-64 assembly for the NASM assembler that calls
+the C runtime printf function to print a greeting, then returns to libc, which
+exits the process.
+
+Use it to validate a Linux install: if it assembles, links, and runs, then the
+NASM assembler, the GNU linker (ld), and the C runtime (libc) are all present
+and working on the machine.
+
+Unlike the 32-bit Windows version, this program follows the System V AMD64
+calling convention (first argument in RDI, AL = number of vector registers for
+variadic calls) and has no leading-underscore name decoration, so the entry
+point is 'main' and it calls 'printf' directly.
+
+
+Requirements
+------------
+
+  * nasm  - the NASM assembler
+  * gcc   - the GNU C compiler / linker (pulls in libc for printf)
+  * ld    - the GNU linker (installed alongside gcc)
+
+On Debian or Ubuntu:
+
+  sudo apt install nasm gcc gdb
+
+On Fedora or RHEL:
+
+  sudo dnf install nasm gcc gdb
+
+(gdb is only needed for debugging - see the Debugging section below.)
+
+
+Build and run
+-------------
+
+The included Makefile does everything:
+
+  make        # assemble and link -> ./hello
+  make run    # build (if needed) and run it
+  make clean  # remove the generated hello.o and hello
+
+Or run the steps by hand:
+
+  nasm -f elf64 hello.asm -o hello.o
+  gcc -no-pie hello.o -o hello
+  ./hello
+
+Expected output:
+
+  Welcome to CYBV311!!
+
+
+Debugging
+---------
+
+To step through the program you must build with debug symbols. NASM needs the
+-g option (and -F dwarf to select the DWARF format that gdb reads); gcc needs
+-g as well. The Makefile's "debug" target does both:
+
+  make debug     # nasm -f elf64 -g -F dwarf ... ; gcc -no-pie -g ...
+  make gdb       # build with symbols, then launch gdb on ./hello
+
+You can confirm the symbols landed with:
+
+  readelf -S hello | grep debug
+
+If you see sections like .debug_info and .debug_line, gdb can show source
+lines.
+
+
+Debugging with gdb (command line)
+.................................
+
+  make gdb              # or: make debug && gdb ./hello
+
+  (gdb) break main      # stop at our entry point
+  (gdb) run             # start; halts at main
+  (gdb) layout regs     # TUI: source + live registers (recommended for asm)
+  (gdb) stepi           # execute one instruction (repeat to step along)
+  (gdb) nexti           # like stepi, but step OVER "call printf"
+  (gdb) info registers  # dump all registers
+  (gdb) x/s $rdi        # show the string RDI points to (the format arg)
+  (gdb) continue        # run to completion -> prints the greeting
+  (gdb) quit
+
+
+Debugging in VS Code (WSL)
+..........................
+
+Config files live in .vscode/launch.json and .vscode/tasks.json.
+
+  1. From a WSL shell in this folder, run:  code .
+     This reopens VS Code connected to WSL with this folder as the workspace.
+  2. Install the "WSL" extension (ms-vscode-remote.remote-wsl) and the
+     "C/C++" extension (ms-vscode.cpptools). The C/C++ extension must be
+     installed in the WSL remote (use "Install in WSL"), not just on Windows.
+  3. Open hello.asm and click the gutter to set a breakpoint.
+  4. Press F5. VS Code runs "make debug" first (the preLaunchTask) so the
+     binary has symbols, then launches it under gdb and stops at entry.
+
+     F10 = step over, F11 = step into (one instruction), F5 = continue,
+     Shift+F5 = stop. Expand VARIABLES -> Registers -> CPU to watch rdi/rax.
+     Right-click in the editor -> "Open Disassembly View" to step by
+     instruction alongside the source.
+
+
+
